@@ -1,0 +1,79 @@
+﻿<Window x:Name="Main" x:Class="CookBook.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CookBook"
+        mc:Ignorable="d"
+        Title="BookCook ver 1.0" Height="650" Width="1400" Loaded="Main_Loaded"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="FontFamily" Value="Comic Sans MS" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu IsMainMenu="True" Margin="0,0,0,0" Grid.Row="0" FontFamily="Comic Sans MS" >
+            <MenuItem Header="Файл">
+                <MenuItem Header="Рецепты">
+                    <MenuItem Header="Показать все" InputGestureText="Ctrl+Shift+N" Click="MenuItem_Click_2"/>
+                    <MenuItem Header="Обновить/Сохранить" InputGestureText="Ctrl+N" Click="MenuItem_Click_3" />
+                </MenuItem>
+                <MenuItem Header="Открыть" InputGestureText="Ctrl+O" Click="MenuItem_Click_4"/>
+                <Separator/>
+                <MenuItem Header="Другие операции">
+                    <MenuItem Header="Найти" Click="MenuItem_Click_5"/>
+                    <MenuItem Header="Добавить фото" Click="MenuItem_Click_6"/>
+                    <MenuItem Header="Удалить" Click="MenuItem_Click_7" />
+                </MenuItem>
+                <MenuItem Header="Выход" InputGestureText="Alt+F4" Click="MenuItem_Click_1"/>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="О программе..." Click="MenuItem_Click" />
+            </MenuItem>
+        </Menu>
+        <DataGrid ItemsSource="{Binding Customers}" 
+          AlternatingRowBackground="Gainsboro"  AlternationCount="2" AutoGenerateColumns="False" x:Name="bCookGrid" Grid.Row="1" FontFamily="Comic Sans MS" SelectionChanged="bCookGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="30" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding DishName}" Header="Название" Width="180"/>
+                <DataGridTextColumn Binding="{Binding Ingredients}" Header="Состав" Width="250"/>
+                <DataGridTextColumn Binding="{Binding Cooking}" Header="Приготовление" Width="250"/>
+                <DataGridTextColumn Binding="{Binding TypeDish}" Header="Вид" Width="110"/>
+                <DataGridTextColumn Binding="{Binding Kitchen}" Header="Кухня" Width="110"/>
+                <DataGridTextColumn Binding="{Binding Portions}" Header="Порций" Width="70"/>
+                <DataGridTextColumn Binding="{Binding TimeForPrep}" Header="Время" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Notes}" Header="Примечания" Width="150"/>
+                <!--<DataGridTextColumn Binding="{Binding Picture}" Header="Изображение" Width="150"/>-->
+                <DataGridTemplateColumn Header="Изображение" Width="150" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Picture}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Pic_path}" Header="Путь к рисунку" Width="0"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="loadButton" Content="Показать всё" Click="loadButton_Click" />
+            <Button x:Name="updateButton" Content="Обновить/Cохр." Click="updateButton_Click" />
+            <Button x:Name="openButton" Content="Открыть" Click="openButton_Click" />
+            <Button x:Name="findButton" Content="Найти" Click="findButton_Click" />
+            <Button x:Name="loadpicButton" Content="Добавить фото" Click="loadpicButton_Click" />
+            <Button x:Name="deleteButton" Content="Удалить" Click="deleteButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
+

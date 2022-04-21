@@ -1,0 +1,51 @@
+﻿<Window x:Class="CookBook.FindWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CookBook"
+        mc:Ignorable="d"
+        Title="FindWindow" Height="200" Width="450" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="FontFamily" Value="Comic Sans MS" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left"  Grid.Row="0" Orientation="Horizontal">
+            <Label VerticalAlignment="Center" Content="Введите текст для поиска:" Grid.Row="0" FontSize="12" FontFamily="Comic Sans MS"></Label>
+            <TextBox x:Name="findText" VerticalAlignment="Center" Grid.Row="0" FontSize="12" FontFamily="Comic Sans MS" Margin="2" Width="265"></TextBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left"  Grid.Row="1" Orientation="Horizontal">
+            <Label VerticalAlignment="Center" Content="Выберите для поиска:" Grid.Row="0" FontSize="12" FontFamily="Comic Sans MS"></Label>
+            <ComboBox x:Name="comboFind" VerticalAlignment="Center" FontSize="12" FontFamily="Comic Sans MS" Margin="15" Width="265" SelectionChanged="comboFind_SelectionChanged" >
+                <ComboBoxItem Name="id">ID</ComboBoxItem>
+                <ComboBoxItem Name ="name" IsSelected="True">Название</ComboBoxItem>
+                <ComboBoxItem Name ="ingr">Состав</ComboBoxItem>
+                <ComboBoxItem Name ="cooking">Приготовление</ComboBoxItem>
+                <ComboBoxItem Name ="type">Вид</ComboBoxItem>
+                <ComboBoxItem Name ="kitchen">Кухня</ComboBoxItem>
+                <ComboBoxItem Name ="portion">Порций</ComboBoxItem>
+                <ComboBoxItem Name ="time">Время</ComboBoxItem>
+                <ComboBoxItem Name ="notice">Примечания</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="2" Orientation="Horizontal">
+            <Button Content="OK" Click="Button_Click"></Button>
+            <Button Content="CANCEL" Click="Button_Click_1"></Button>
+        </StackPanel>
+       
+
+    </Grid>
+</Window>
